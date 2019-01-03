@@ -1,15 +1,23 @@
 const http = require('http')
 const { port, hostname } = require('./server.conf')
 
+const asyncType = 'async'
+const syncType = 'sync'
+const requestTypes = [asyncType, syncType]
+
+// default settings: async and 50 requests
 module.exports = async function request(numberOfReq, reqType) {
-    if (reqType === 'async') {
-        for (let i=0; i < numberOfReq; i++) {
+    const requestsNumber = Number.isInteger(Number(numberOfReq)) ? numberOfReq : 50
+    const requestType = requestTypes.includes(reqType) ? reqType : asyncType
+
+    if (requestType === asyncType) {
+        for (let i=0; i < requestsNumber; i++) {
             htttpGet()
                 .then(x => console.log(`async result (${i+1}): ${x}`))
                 .catch(console.log)
         }
-    } else if (reqType === 'sync') {
-        for (let i=0; i < numberOfReq; i++) {
+    } else if (requestType === syncType) {
+        for (let i=0; i < requestsNumber; i++) {
             try 
             {
                 const result = await htttpGet()
