@@ -1,6 +1,16 @@
 const tree = require('./tree')
+const ArgumentParser = require('argparse').ArgumentParser
 
-const args = process.argv.slice(2)
-const dirpath = args[0] ? args[0] : '.'
+const parser = new ArgumentParser({ addHelp: true })
+
+parser.addArgument(
+    [ '-path', '--path' ],
+    {
+        help: 'Set root directory of tree.'
+    }
+)
+
+const args = parser.parseArgs()
+const dirpath = args.path ? args.path : '.'
 
 tree(dirpath).then(console.log)

@@ -4,5 +4,8 @@
   "private": true,
   "scripts": {
     "tree": "node test.js"
+  },
+  "devDependencies": {
+    "argparse": "^1.0.10"
   }
 }

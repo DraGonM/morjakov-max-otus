@@ -1,6 +1,6 @@
 ## run through npm with parameter (path)
 ----------------
-npm run tree -- /
+npm run tree -- -path PATH
 
-Arg - [path] for reading
+Arg (-path) - [path] for reading
 If runned without parameters, then it is using [default] settings - '.', read files and folders in current directory.
